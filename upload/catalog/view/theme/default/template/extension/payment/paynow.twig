@@ -1,0 +1,31 @@
+<div class="buttons">
+    <div class="pull-right">
+        <input type="submit" value="{{ button_confirm }}" id="button-confirm" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
+    </div>
+</div>
+<div id="paynow-error"></div>
+<script type="text/javascript"><!--
+$('#button-confirm').bind('click', function() {
+    $.ajax({
+        url: 'index.php?route=extension/payment/paynow/pay',
+        type: 'post',
+        dataType: 'json',
+        cache: false,
+        beforeSend: function() {
+            $('#button-confirm').button('loading');
+        },
+        complete: function() {
+            $('#button-confirm').button('reset');
+        },
+        success: function(json) {
+            if (json.error) {
+                $('#paynow-error').empty().append(json.error);
+            }
+
+            if (json.redirect) {
+                location = json['redirect'];
+            }
+        }
+    });
+});
+//--></script>
