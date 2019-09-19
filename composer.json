@@ -1,0 +1,14 @@
+{
+  "name": "pay-now/paynow-opencart",
+  "description": "OpenCart Payment Extension for Paynow",
+  "type": "opencart-plugin",
+  "require": {
+    "php": ">=5.4",
+    "pay-now/paynow-php-sdk": "^1.0"
+  },
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "config": {
+    "vendor-dir": "upload/system/storage/vendor/paynow"
+  }
+}

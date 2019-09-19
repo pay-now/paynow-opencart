@@ -1,0 +1,145 @@
+{{ header }}{{ column_left }}
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+                <button type="submit" form="form-paynow" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+                <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if error_warning %}
+            <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+            </div>
+            <div class="panel-body">
+                <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-paynow" class="form-horizontal">
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+                        <div class="col-sm-10">
+                            <label class="radio-inline">
+                                {% if payment_paynow_status %}
+                                    <input type="radio" name="payment_paynow_status" value="1" checked="checked" />
+                                    {{ text_yes }}
+                                {% else %}
+                                    <input type="radio" name="payment_paynow_status" value="1" />
+                                    {{ text_yes }}
+                                {% endif %}
+                            </label>
+                            <label class="radio-inline">
+                                {% if not payment_paynow_status %}
+                                    <input type="radio" name="payment_paynow_status" value="0" checked="checked" />
+                                    {{ text_no }}
+                                {% else %}
+                                    <input type="radio" name="payment_paynow_status" value="0" />
+                                    {{ text_no }}
+                                {% endif %}
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-sandbox">{{ entry_sandbox_enabled }}</label>
+                        <div class="col-sm-10">
+                            <label class="radio-inline">
+                                {% if entry_sandbox_enabled %}
+                                    <input type="radio" name="payment_paynow_sandbox_enabled" value="1" checked="checked" />
+                                    {{ text_yes }}
+                                {% else %}
+                                    <input type="radio" name="payment_paynow_sandbox_enabled" value="1" />
+                                    {{ text_yes }}
+                                {% endif %}
+                            </label>
+                            <label class="radio-inline">
+                                {% if not entry_sandbox_enabled %}
+                                    <input type="radio" name="payment_paynow_sandbox_enabled" value="0" checked="checked" />
+                                    {{ text_no }}
+                                {% else %}
+                                    <input type="radio" name="payment_paynow_sandbox_enabled" value="0" />
+                                    {{ text_no }}
+                                {% endif %}
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-sandbox-api-key"> {{ entry_sandbox_api_key }}</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="payment_paynow_sandbox_api_key" value="{{ payment_paynow_sandbox_api_key }}" id="input-sandbox-api-key" class="form-control" />
+                            {% if error_sandbox_api_key %}
+                                <div class="text-danger">{{ error_sandbox_api_key }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-sandbox-signature-key"> {{ entry_sandbox_signature_key }}</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="payment_paynow_sandbox_signature_key" value="{{ payment_paynow_sandbox_signature_key }}" id="input-sandbox-signature-key" class="form-control" />
+                            {% if error_sandbox_signature_key %}
+                                <div class="text-danger">{{ error_sandbox_signature_key }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-production-api-key"> {{ entry_production_api_key }}</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="payment_paynow_production_api_key" value="{{ payment_paynow_production_api_key }}" id="input-production-api-key" class="form-control" />
+                            {% if error_production_api_key %}
+                                <div class="text-danger">{{ error_production_api_key }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-production-signature-key"> {{ entry_production_signature_key }}</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="payment_paynow_production_signature_key" value="{{ payment_paynow_production_signature_key }}" id="input-production-signature-key" class="form-control" />
+                            {% if error_production_signature_key %}
+                                <div class="text-danger">{{ error_production_signature_key }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-sort-order">{{ entry_sort_order }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="payment_paynow_sort_order" value="{{ payment_paynow_sort_order }}" placeholder="{{ entry_sort_order }}" id="input-sort-order" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-geo-zone">{{ entry_geo_zone }}</label>
+                        <div class="col-sm-10">
+                            <select name="payment_paynow_geo_zone_id" id="input-geo-zone" class="form-control">
+                                <option value="0">{{ text_all_zones }}</option>
+                                {% for geo_zone in geo_zones %}
+                                    {% if geo_zone.geo_zone_id == payment_payza_geo_zone_id %}
+                                        <option value="{{ geo_zone.geo_zone_id }}" selected="selected">{{ geo_zone.name }}</option>
+                                    {% else %}
+                                        <option value="{{ geo_zone.geo_zone_id }}">{{ geo_zone.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{ footer }}
