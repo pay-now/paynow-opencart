@@ -13,7 +13,7 @@ class ControllerExtensionPaymentPaynow extends Controller
     const ORDER_STATUS_CONFIRMED = 2;
     const ORDER_STATUS_ERROR = 10;
 
-    protected $version = "1.0.0";
+    protected $version = "1.0.1";
     private $apiClient = null;
     private $isSandboxEnabled;
     private $apiKey;
@@ -92,8 +92,9 @@ class ControllerExtensionPaymentPaynow extends Controller
                 "email" => $orderInfo["email"]
             ]
         ];
+        $idempotencyKey = uniqid($orderInfo['order_id'], "_");
         $payment = new \Paynow\Service\Payment($this->apiClient);
-        return $payment->authorize($payment_data);
+        return $payment->authorize($payment_data, $idempotencyKey);
     }
 
     public function notification()
@@ -105,16 +106,14 @@ class ControllerExtensionPaymentPaynow extends Controller
         $headers = $this->getRequestHeaders();
         $notificationData = json_decode($payload, true);
 
-        $payment = $this->model_extension_payment_paynow->getLastPaymentStatus($notificationData["paymentId"]);
-
-        if (!$payment) {
-            $this->model_extension_payment_paynow->log("Order for payment not exists - " . $notificationData["paymentId"]);
-            header('HTTP/1.1 400 Bad Request', true, 400);
-            exit;
-        }
-
         try {
             new \Paynow\Notification($this->signatureKey, $payload, $headers);
+            $payment = $this->model_extension_payment_paynow->getLastPaymentStatus($notificationData["paymentId"]);
+            if (!$payment) {
+                $this->model_extension_payment_paynow->log("Order for payment not exists - " . $notificationData["paymentId"]);
+                header('HTTP/1.1 400 Bad Request', true, 400);
+                exit;
+            }
         } catch (\Exception $exception) {
             $this->model_extension_payment_paynow->log($exception->getMessage() . " - " . $notificationData["paymentId"]);
             header('HTTP/1.1 400 Bad Request', true, 400);
@@ -130,28 +129,29 @@ class ControllerExtensionPaymentPaynow extends Controller
     {
         $orderInfo = $this->model_checkout_order->getOrder($payment["id_order"]);
         if ($orderInfo) {
-            if ($this->isCorrectStatus($payment['status'], $notificationData['status'])) {
-                switch ($notificationData['status']) {
-                    case self::PAYNOW_PAYMENT_STATUS_PENDING:
-                        break;
-                    case self::PAYNOW_PAYMENT_STATUS_REJECTED:
-                        $this->model_checkout_order->addOrderHistory($orderInfo['order_id'], self::ORDER_STATUS_REJECTED, "Paynow: " . $payment["id_payment"] . "- " . $notificationData['status']);
-                        break;
-                    case self::PAYNOW_PAYMENT_STATUS_CONFIRMED:
-                        $this->model_checkout_order->addOrderHistory($orderInfo['order_id'], self::ORDER_STATUS_CONFIRMED, "Paynow: " . $payment["id_payment"] . "- " . $notificationData['status']);
-                        break;
-                    case self::PAYNOW_PAYMENT_STATUS_ERROR:
-                        $this->model_checkout_order->addOrderHistory($orderInfo['order_id'], self::ORDER_STATUS_ERROR, "Paynow: " . $payment["id_payment"] . "- " . $notificationData['status']);
-                        break;
-                }
-
-                $this->model_extension_payment_paynow->storePaymentState(
-                    $notificationData['paymentId'],
-                    $notificationData['status'],
-                    $orderInfo["order_id"],
-                    (new DateTime($notificationData['modifiedAt']))->format('Y-m-d H:i:s')
-                );
+            if (!$this->isCorrectStatus($payment['status'], $notificationData['status'])) {
+                throw new Exception('Order status transition is incorrect ' . $payment['status'] . ' - ' . $notificationData['status'] . ' for order ' . $orderInfo['order_id']);
             }
+            switch ($notificationData['status']) {
+                case self::PAYNOW_PAYMENT_STATUS_PENDING:
+                    break;
+                case self::PAYNOW_PAYMENT_STATUS_REJECTED:
+                    $this->model_checkout_order->addOrderHistory($orderInfo['order_id'], self::ORDER_STATUS_REJECTED, "Paynow: " . $payment["id_payment"] . "- " . $notificationData['status']);
+                    break;
+                case self::PAYNOW_PAYMENT_STATUS_CONFIRMED:
+                    $this->model_checkout_order->addOrderHistory($orderInfo['order_id'], self::ORDER_STATUS_CONFIRMED, "Paynow: " . $payment["id_payment"] . "- " . $notificationData['status']);
+                    break;
+                case self::PAYNOW_PAYMENT_STATUS_ERROR:
+                    $this->model_checkout_order->addOrderHistory($orderInfo['order_id'], self::ORDER_STATUS_ERROR, "Paynow: " . $payment["id_payment"] . "- " . $notificationData['status']);
+                    break;
+            }
+
+            $this->model_extension_payment_paynow->storePaymentState(
+                $notificationData['paymentId'],
+                $notificationData['status'],
+                $orderInfo["order_id"],
+                (new DateTime($notificationData['modifiedAt']))->format('Y-m-d H:i:s')
+            );
         }
     }
 
@@ -162,7 +162,7 @@ class ControllerExtensionPaymentPaynow extends Controller
             self::PAYNOW_PAYMENT_STATUS_PENDING => [self::PAYNOW_PAYMENT_STATUS_CONFIRMED, self::PAYNOW_PAYMENT_STATUS_REJECTED],
             self::PAYNOW_PAYMENT_STATUS_REJECTED => [self::PAYNOW_PAYMENT_STATUS_CONFIRMED],
             self::PAYNOW_PAYMENT_STATUS_CONFIRMED => [],
-            self::PAYNOW_PAYMENT_STATUS_ERROR => []
+            self::PAYNOW_PAYMENT_STATUS_ERROR => [self::PAYNOW_PAYMENT_STATUS_CONFIRMED, self::PAYNOW_PAYMENT_STATUS_REJECTED]
         ];
         $previousStatusExists = isset($paymentStatusFlow[$previousStatus]);
         $isChangePossible = in_array($nextStatus, $paymentStatusFlow[$previousStatus]);
