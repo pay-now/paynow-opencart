@@ -1,28 +1,35 @@
-# OpenCart Payment Extension for Paynow
+[**English version**][ext0]
+# Wtyczka Paynow dla OpenCart Payment
 
-This plugin supports OpenCart 3.0 and higher.
+Wtyczka wspiera OpenCart w wersji 3.0 lub wyższej.
 
-To access Paynow API please contact our support at kontakt@paynow.pl.
+Aby uzyskać dostęp do API Paynow skontaktuj się z nami: kontakt@paynow.pl.
 
-## Installation
-1. Download plugin from Github repository to local directory as zip.
-2. Unzip locally downloaded file
-3. Upload folder `upload` to the server
-4. Go to the OpenCart administration page
-5. Go to `Extensions > Extensions`
-6. From the filter list chose `Payments`
-7. Find `Paynow` and click `Install`
+## Instalacja
+1. Pobierz wtyczkę z [repozytorium Github][ext1] i zapisz plik .zip na dysku swojego komputera
+2. Rozpakuj pobrane archiwum
+3. Wrzuć folder `upload` na serwer
+4. Przejdź do panelu administracyjnego  OpenCart administration 
+5. Przejdź do zakładki `Extensions > Extensions`
+6. Z listy filtrów wybierz `Payments`
+7. Znajdź `Paynow` a następnie wybierz opcję `Install`
 
-## Configuration
-1. Go to the OpenCart administration page
-2. Go to `Extensions > Extensions`
-3. From the filter list chose `Payments`
-3. Find `Paynow` and click `Edit`
-4. Credential Keys can be found in `Settings > Shopes and poses > Authentication data` in Paynow merchant panel
-5. Type `Api-Key` and `Signature-Key` in proper fields
+## Konfiguracja
+1. Przejdź do panelu administracyjnego OpenCart 
+2. Przejdź do zakładki `Extensions > Extensions`
+3. Z listy filtrów wybierz `Payments`
+3. Znajdź `Paynow` a następnie wybierz opcję `Edit`
+4. Klucze dostępu znajdziesz w `Ustawienia > Sklepy i punkty płatności > Dane uwierzytelniające` w panelu sprzedawcy Paynow
+5. Wpisz `Api-Key` i `Signature-Key` w odpowiednie pola
 
-## Support
-If you have any questions or issues, please contact our support on kontakt@paynow.pl.
+## Wsparcie
+Jeśli masz jakiekolwiek pytania lub problemy, skontaktuj się z naszym wsparciem technicznym: support@paynow.pl.
 
-## License
-MIT license. For more information, see the LICENSE file.
+## Więcej informacji
+Jeśli chciałbyś dowiedzieć się więcej o bramce płatności Paynow odwiedź naszą stronę: https://www.paynow.pl/
+
+## Licencja
+Licencja MIT. Szczegółowe informacje znajdziesz w pliku LICENSE.
+
+[ext0]: README.md
+[ext1]: https://github.com/pay-now/paynow-opencart/releases/latest
