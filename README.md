@@ -22,6 +22,9 @@ Aby uzyskać dostęp do API Paynow skontaktuj się z nami: kontakt@paynow.pl.
 4. Klucze dostępu znajdziesz w `Ustawienia > Sklepy i punkty płatności > Dane uwierzytelniające` w panelu sprzedawcy Paynow
 5. Wpisz `Api-Key` i `Signature-Key` w odpowiednie pola
 
+## Sandbox
+W celu przetestowania działania bramki Paynow zapraszamy do skorzystania z naszego środowiska testowego. W tym celu zarejestruj się na stronie: [panel.sandbox.paynow.pl][ext2]. 
+
 ## Wsparcie
 Jeśli masz jakiekolwiek pytania lub problemy, skontaktuj się z naszym wsparciem technicznym: support@paynow.pl.
 
@@ -33,3 +36,4 @@ Licencja MIT. Szczegółowe informacje znajdziesz w pliku LICENSE.
 
 [ext0]: README.md
 [ext1]: https://github.com/pay-now/paynow-opencart/releases/latest
+[ext2]: https://panel.sandbox.paynow.pl/
