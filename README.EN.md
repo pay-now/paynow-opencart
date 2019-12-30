@@ -1,7 +1,7 @@
 [**Wersja polska**][ext0]
 # OpenCart Payment Extension for Paynow
 
-Paynow plugin adds quick bank transfers and Blik payment to OpenCart shop.
+Paynow plugin adds quick bank transfers and BLIK payment to OpenCart shop.
 
 This plugin supports OpenCart 3.0 and higher.
 
