@@ -3,8 +3,6 @@
 
 This plugin supports OpenCart 3.0 and higher.
 
-To access Paynow API please contact our support at kontakt@paynow.pl.
-
 ## Installation
 1. Download plugin from [Github repository][ext1] to the local directory as zip file
 2. Unzip locally downloaded file

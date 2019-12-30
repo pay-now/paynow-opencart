@@ -3,8 +3,6 @@
 
 Wtyczka wspiera OpenCart w wersji 3.0 lub wyższej.
 
-Aby uzyskać dostęp do API Paynow skontaktuj się z nami: kontakt@paynow.pl.
-
 ## Instalacja
 1. Pobierz wtyczkę z [repozytorium Github][ext1] i zapisz plik .zip na dysku swojego komputera
 2. Rozpakuj pobrane archiwum
