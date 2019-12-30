@@ -34,6 +34,6 @@ Jeśli chciałbyś dowiedzieć się więcej o bramce płatności Paynow odwied�
 ## Licencja
 Licencja MIT. Szczegółowe informacje znajdziesz w pliku LICENSE.
 
-[ext0]: README.md
+[ext0]: README.EN.md
 [ext1]: https://github.com/pay-now/paynow-opencart/releases/latest
 [ext2]: https://panel.sandbox.paynow.pl/
