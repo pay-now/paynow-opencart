@@ -1,6 +1,8 @@
 [**English version**][ext0]
 # Wtyczka Paynow dla OpenCart Payment
 
+Wtyczka Paynow dodaje szybkie płatności i płatności BLIK do sklepu OpenCart.
+
 Wtyczka wspiera OpenCart w wersji 3.0 lub wyższej.
 
 ## Instalacja
