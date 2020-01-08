@@ -6,7 +6,7 @@ Wtyczka Paynow dodaje szybkie płatności i płatności BLIK do sklepu OpenCart.
 Wtyczka wspiera OpenCart w wersji 3.0 lub wyższej.
 
 ## Instalacja
-1. Pobierz wtyczkę z [repozytorium Github][ext1] i zapisz plik .zip na dysku swojego komputera
+1. Pobierz plik paynow.zip [repozytorium Github][ext1] i zapisz na dysku swojego komputera
 2. Rozpakuj pobrane archiwum
 3. Wrzuć folder `upload` na serwer
 4. Przejdź do panelu administracyjnego  OpenCart administration 
