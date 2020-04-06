@@ -91,7 +91,7 @@ class ControllerExtensionPaymentPaynow extends Controller
 
     private function initApiClient()
     {
-        require_once(DIR_SYSTEM . 'storage/vendor/paynow/autoload.php');
+        require_once(DIR_SYSTEM . 'library/vendor/paynow/autoload.php');
 
         $this->load->model("setting/setting");
         $isSandboxEnabled = $this->getConfigValue('payment_paynow_sandbox_enabled');
