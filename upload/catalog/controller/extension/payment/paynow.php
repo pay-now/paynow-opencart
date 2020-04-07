@@ -97,7 +97,7 @@ class ControllerExtensionPaymentPaynow extends Controller
         return $payment->authorize($payment_data, $idempotencyKey);
     }
 
-    public function notification()
+    public function notifications()
     {
         $this->load->model("extension/payment/paynow");
         $this->load->model("checkout/order");
