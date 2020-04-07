@@ -97,7 +97,7 @@ class ControllerExtensionPaymentPaynow extends Controller
         return $payment->authorize($payment_data, $idempotencyKey);
     }
 
-    public function notification()
+    public function notifications()
     {
         $this->load->model("extension/payment/paynow");
         $this->load->model("checkout/order");
@@ -123,6 +123,13 @@ class ControllerExtensionPaymentPaynow extends Controller
 
         header("HTTP/1.1 202 Accepted");
         exit;
+    }
+
+    /**
+     * @deprecated
+     */
+    public function notification() {
+        $this->notifications();
     }
 
     private function updateOrderState($payment, $notificationData)

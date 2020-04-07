@@ -113,8 +113,8 @@ class ControllerExtensionPaymentPaynow extends Controller
             $this->initApiClient();
             $shopConfiguration = new \Paynow\Service\ShopConfiguration($this->apiClient);
             $shopConfiguration->changeUrls(
-                $this->url->link('checkout/success', '', true),
-                $this->url->link('extension/payment/paynow/notifications', '', true)
+                $this->buildBaseUrlWithRoute('checkout/success'),
+                $this->buildBaseUrlWithRoute('extension/payment/paynow/notifications')
             );
         } catch (Paynow\Exception\PaynowException $exception) {
             $this->model_extension_payment_paynow->log($exception->getMessage() . ": " . json_encode($exception->getErrors()));
@@ -149,5 +149,12 @@ class ControllerExtensionPaymentPaynow extends Controller
         }
 
         return !$this->error;
+    }
+
+    private function buildBaseUrlWithRoute($route)
+    {
+        $context_url = parse_url($this->url->link($route, '', true));
+        $base_url = new Url($context_url['scheme'] . '://' . $context_url['host'] . '/');
+        return $base_url->link($route);
     }
 }
