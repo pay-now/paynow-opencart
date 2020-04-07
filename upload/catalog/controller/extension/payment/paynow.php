@@ -114,13 +114,13 @@ class ControllerExtensionPaymentPaynow extends Controller
                 header('HTTP/1.1 400 Bad Request', true, 400);
                 exit;
             }
+            $this->updateOrderState($payment, $notificationData);
         } catch (\Exception $exception) {
             $this->model_extension_payment_paynow->log($exception->getMessage() . " - " . $notificationData["paymentId"]);
             header('HTTP/1.1 400 Bad Request', true, 400);
             exit;
         }
 
-        $this->updateOrderState($payment, $notificationData);
         header("HTTP/1.1 202 Accepted");
         exit;
     }
@@ -158,11 +158,23 @@ class ControllerExtensionPaymentPaynow extends Controller
     private function isCorrectStatus($previousStatus, $nextStatus)
     {
         $paymentStatusFlow = [
-            self::PAYNOW_PAYMENT_STATUS_NEW => [self::PAYNOW_PAYMENT_STATUS_PENDING, self::PAYNOW_PAYMENT_STATUS_ERROR],
-            self::PAYNOW_PAYMENT_STATUS_PENDING => [self::PAYNOW_PAYMENT_STATUS_CONFIRMED, self::PAYNOW_PAYMENT_STATUS_REJECTED],
+            self::PAYNOW_PAYMENT_STATUS_NEW => [
+                self::PAYNOW_PAYMENT_STATUS_NEW,
+                self::PAYNOW_PAYMENT_STATUS_PENDING,
+                self::PAYNOW_PAYMENT_STATUS_ERROR,
+                self::PAYNOW_PAYMENT_STATUS_CONFIRMED,
+                self::PAYNOW_PAYMENT_STATUS_REJECTED
+            ],
+            self::PAYNOW_PAYMENT_STATUS_PENDING => [
+                self::PAYNOW_PAYMENT_STATUS_CONFIRMED,
+                self::PAYNOW_PAYMENT_STATUS_REJECTED
+            ],
             self::PAYNOW_PAYMENT_STATUS_REJECTED => [self::PAYNOW_PAYMENT_STATUS_CONFIRMED],
             self::PAYNOW_PAYMENT_STATUS_CONFIRMED => [],
-            self::PAYNOW_PAYMENT_STATUS_ERROR => [self::PAYNOW_PAYMENT_STATUS_CONFIRMED, self::PAYNOW_PAYMENT_STATUS_REJECTED]
+            self::PAYNOW_PAYMENT_STATUS_ERROR => [
+                self::PAYNOW_PAYMENT_STATUS_CONFIRMED,
+                self::PAYNOW_PAYMENT_STATUS_REJECTED
+            ]
         ];
         $previousStatusExists = isset($paymentStatusFlow[$previousStatus]);
         $isChangePossible = in_array($nextStatus, $paymentStatusFlow[$previousStatus]);

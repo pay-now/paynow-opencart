@@ -38,7 +38,8 @@ class ModelExtensionPaymentPaynow extends Model
     {
         $modified_at = !$modified_at ? 'NOW()' : '"' . $modified_at . '"';
         $query = 'INSERT INTO ' . DB_PREFIX . 'paynow_payments (id_order, id_payment, status, created_at, modified_at) 
-            VALUES (' . (int)$id_order . ', "' . $this->db->escape($id_payment) . '", "' . $this->db->escape($status) . '", NOW(), ' . $modified_at . ')';
+            VALUES (' . (int)$id_order . ', "' . $this->db->escape($id_payment) . '", "' . $this->db->escape($status) . '", NOW(), ' . $modified_at . ') 
+            ON DUPLICATE KEY UPDATE modified_at=' . $modified_at;
 
         $this->db->query($query);
     }
