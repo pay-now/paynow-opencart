@@ -125,6 +125,13 @@ class ControllerExtensionPaymentPaynow extends Controller
         exit;
     }
 
+    /**
+     * @deprecated
+     */
+    public function notification() {
+        $this->notifications();
+    }
+
     private function updateOrderState($payment, $notificationData)
     {
         $orderInfo = $this->model_checkout_order->getOrder($payment["id_order"]);

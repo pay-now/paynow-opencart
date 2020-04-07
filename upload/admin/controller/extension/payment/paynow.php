@@ -153,6 +153,8 @@ class ControllerExtensionPaymentPaynow extends Controller
 
     private function buildBaseUrlWithRoute($route)
     {
-        return str_replace("/admin","", $this->url->link($route, '', true));
+        $context_url = parse_url($this->url->link($route, '', true));
+        $base_url = new Url($context_url['scheme'] . '://' . $context_url['host'] . '/');
+        return $base_url->link($route);
     }
 }
