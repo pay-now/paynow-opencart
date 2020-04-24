@@ -38,11 +38,11 @@ Wtyczka wspiera OpenCart w wersji 3.0 lub wyższej.
 
 ![Konfiguracja krok 3][ext6]
 
-4. Produkcyjne klucze dostępu znajdziesz w zakładce `Paynow >Ustawienia > Sklepy i punkty płatności > Dane uwierzytelniające` w bankowości internetowej mBanku..
+4. Produkcyjne klucze dostępu znajdziesz w zakładce `Paynow >Ustawienia > Sklepy i punkty płatności > Dane uwierzytelniające` w bankowości internetowej mBanku.
 
-Klucze dla środowiska testowego znajdziesz w zakładce `Ustawienia > Sklepy i punkty płatności > Dane uwierzytelniające` w [panelu środowiska testowego][ext11].
+   Klucze dla środowiska testowego znajdziesz w zakładce `Ustawienia > Sklepy i punkty płatności > Dane uwierzytelniające` w [panelu środowiska testowego][ext11].
 
-![Konfiguracja krok 4][ext6]
+![Konfiguracja krok 4][ext8]
 
 5. W zależności od środowiska, z którym chesz się połaczyć wpisz:
 
@@ -53,15 +53,17 @@ Klucze dla środowiska testowego znajdziesz w zakładce `Ustawienia > Sklepy i p
   - `API Key (Sandbox)`
   - `Signature Key (Sandbox)`
 
-![Konfiguracja krok 5][ext7]
+![Konfiguracja krok 5][ext9]
 
 ## FAQ
 
 **Jak skonfigurować adres powiadomień?**
+
 Adres powrotu ustawi się automatycznie po opłaceniu pierwszego zamówienia. W przypadku problemów w panelu sprzedawcy Paynow przejdź do zakładki `Ustawienia > Sklepy i punkty płatności`, w polu `Adres powiadomień` ustaw adres:
 `https://twoja-domena.pl/index.php?route=extension/payment/paynow/notifications`.
 
 **Jak skonfigurować adres powrotu?**
+
 Adres powrotu ustawi się automatycznie po opłaceniu pierwszego zamówienia. W przypadku problemów w panelu sprzedawcy Paynow przejdź do zakładki `Ustawienia > Sklepy i punkty płatności > Punkt płatności`, w polu `Adres powrotu` ustaw adres:
 `https://twoja-domena.pl/index.php?route=checkout/success`.
 
