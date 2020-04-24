@@ -2,7 +2,7 @@
 
 # OpenCart Payment Extension for Paynow
 
-Paynow plugin adds quick bank transfers and BLIK payment to OpenCart shop.
+The Paynow plugin adds quick bank transfers and BLIK payment to an OpenCart shop.
 
 This plugin supports OpenCart 3.0 and higher.
 
@@ -23,7 +23,7 @@ This plugin supports OpenCart 3.0 and higher.
 
 ![Installation step 3][ext3]
 
-4. In the section `Upload your extension` use the ption `Upload` and point to the archive containing the plugin (downloaded in the 1st step)
+4. In the section `Upload your extension` use the option `Upload` and point to the archive containing the plugin (downloaded in the 1st step)
 
 ## Configuration
 
@@ -36,13 +36,13 @@ This plugin supports OpenCart 3.0 and higher.
 
 ![Configuration step 3][ext6]
 
-4. Production credential keys can be found in `Settings > Shops and poses > Authentication data` in the Paynow merchant panel.
+4. The production credential keys can be found in `Settings > Shops and poses > Authentication data` in the Paynow merchant panel.
 
-   Sandbox credential keys can be found in `Settings > Shops and poses > Authentication data` in the [sandbox panel][ext11].
+   The sandbox credential keys can be found in `Settings > Shops and poses > Authentication data` in the [sandbox panel][ext11].
 
 ![Configuration step 4][ext8]
 
-5. Depending on the environment you want to connect type:
+5. Depending on the type of the environment you want to connect with:
 
 - for the production environment
   - `API Key (Production)`
@@ -55,17 +55,17 @@ This plugin supports OpenCart 3.0 and higher.
 
 **How to configure the notification address?**
 
-The notification address will be set automatically for each order. Otherwise in the Paynow merchant panel go to the tab `Settings > Shops and poses`, in the field `Notification address` set the address: `https://your-domain.pl/index.php?route=extension/payment/paynow/notifications`.
+The notification address will be set automatically for each order. If not, in the Paynow merchant panel go to the tab `Settings > Shops and poses`, in the field `Notification address` set the address: `https://your-domain.pl/index.php?route=extension/payment/paynow/notifications`.
 
 **How to configure the return address?**
 
-The return address will be set automatically for each order. Otherwise in the Paynow merchant panel go to the tab `Settings > Shops and poses > Point of sales`, in the field `Return address` set the address: `https://your-domain.pl/index.php?route=checkout/success`.
+The return address will be set automatically for each order. If not, in the Paynow merchant panel go to the tab `Settings > Shops and poses > Point of sales`, in the field `Return address` set the address: `https://your-domain.pl/index.php?route=checkout/success`.
 
 ![FAQ][ext12]
 
 ## Sandbox
 
-To be able to test our Paynow Sandbox environment register [here][ext2]
+To be able to test our Paynow Sandbox environment register [here][ext2].
 
 ## Support
 
@@ -73,7 +73,7 @@ If you have any questions or issues, please contact our support on kontakt@payno
 
 ## More info
 
-If you wish to learn more about Paynow visit our website: https://www.paynow.pl/
+If you wish to learn more about Paynow visit our website: https://www.paynow.pl/.
 
 ## License
 
