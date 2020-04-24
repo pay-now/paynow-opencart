@@ -42,6 +42,18 @@ This plugin supports OpenCart 3.0 and higher.
   - `API Key (Sandbox)`
   - `Signature Key (Sandbox)`
 
+## FAQ
+
+**How to configure the notification address?**
+
+The notification address will be set automatically for each order. Otherwise in the Paynow merchant panel go to the tab `Settings > Shops and poses`, in the field `Notification address` set the address: `https://your-domain.pl/index.php?route=extension/payment/paynow/notifications`.
+
+**How to configure the return address?**
+
+The return address will be set automatically for each order. Otherwise in the Paynow merchant panel go to the tab `Settings > Shops and poses > Point of sales`, in the field `Return address` set the address: `https://your-domain.pl/index.php?route=checkout/success`.
+
+![FAQ][ext12]
+
 ## Sandbox
 
 To be able to test our Paynow Sandbox environment register [here][ext2]

@@ -59,7 +59,7 @@ Wtyczka wspiera OpenCart w wersji 3.0 lub wyższej.
 
 **Jak skonfigurować adres powiadomień?**
 
-Adres powrotu ustawi się automatycznie po opłaceniu pierwszego zamówienia. W przypadku problemów w panelu sprzedawcy Paynow przejdź do zakładki `Ustawienia > Sklepy i punkty płatności`, w polu `Adres powiadomień` ustaw adres:
+Adres powiadomień ustawi się automatycznie po opłaceniu pierwszego zamówienia. W przypadku problemów w panelu sprzedawcy Paynow przejdź do zakładki `Ustawienia > Sklepy i punkty płatności`, w polu `Adres powiadomień` ustaw adres:
 `https://twoja-domena.pl/index.php?route=extension/payment/paynow/notifications`.
 
 **Jak skonfigurować adres powrotu?**
