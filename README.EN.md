@@ -6,6 +6,15 @@ Paynow plugin adds quick bank transfers and BLIK payment to OpenCart shop.
 
 This plugin supports OpenCart 3.0 and higher.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [FAQ](#FAQ)
+- [Sandbox](#sandbox)
+- [Support](#support)
+- [License](#license)
+
 ## Installation
 
 1. Download the paynow.ocmod.zip file from [Github repository][ext1] to the local directory as zip file
