@@ -55,11 +55,11 @@ This plugin supports OpenCart 3.0 and higher.
 
 **How to configure the notification address?**
 
-The notification address will be set automatically for each order. If not, in the Paynow merchant panel go to the tab `Settings > Shops and poses`, in the field `Notification address` set the address: `https://your-domain.pl/index.php?route=extension/payment/paynow/notifications`.
+The notification address will be set automatically when the module settings are saved. If not, in the Paynow merchant panel go to the tab `Settings > Shops and poses`, in the field `Notification address` set the address: `https://your-domain.pl/index.php?route=extension/payment/paynow/notifications`.
 
 **How to configure the return address?**
 
-The return address will be set automatically for each order. If not, in the Paynow merchant panel go to the tab `Settings > Shops and poses > Point of sales`, in the field `Return address` set the address: `https://your-domain.pl/index.php?route=checkout/success`.
+The return address will be set automatically when the module settings are saved. If not, in the Paynow merchant panel go to the tab `Settings > Shops and poses > Point of sales`, in the field `Return address` set the address: `https://your-domain.pl/index.php?route=checkout/success`.
 
 ![FAQ][ext12]
 
