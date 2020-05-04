@@ -79,7 +79,7 @@ If you wish to learn more about Paynow visit our website: https://www.paynow.pl/
 
 MIT license. For more information, see the LICENSE file.
 
-[ext0]: README.EN.md
+[ext0]: README.md
 [ext1]: https://github.com/pay-now/paynow-opencart/releases/latest
 [ext2]: https://panel.sandbox.paynow.pl/auth/register
 [ext3]: instruction/step1.png

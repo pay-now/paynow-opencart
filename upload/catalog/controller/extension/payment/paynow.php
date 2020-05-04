@@ -27,7 +27,7 @@ class ControllerExtensionPaymentPaynow extends Controller
 
     private function initApiClient()
     {
-        require_once(DIR_SYSTEM . "storage/vendor/paynow/autoload.php");
+        require_once(DIR_SYSTEM . "library/vendor/paynow/autoload.php");
 
         $this->load->model("setting/setting");
         $this->isSandboxEnabled = (int)$this->config->get("payment_paynow_sandbox_enabled");
@@ -97,7 +97,7 @@ class ControllerExtensionPaymentPaynow extends Controller
         return $payment->authorize($payment_data, $idempotencyKey);
     }
 
-    public function notification()
+    public function notifications()
     {
         $this->load->model("extension/payment/paynow");
         $this->load->model("checkout/order");
@@ -114,15 +114,22 @@ class ControllerExtensionPaymentPaynow extends Controller
                 header('HTTP/1.1 400 Bad Request', true, 400);
                 exit;
             }
+            $this->updateOrderState($payment, $notificationData);
         } catch (\Exception $exception) {
             $this->model_extension_payment_paynow->log($exception->getMessage() . " - " . $notificationData["paymentId"]);
             header('HTTP/1.1 400 Bad Request', true, 400);
             exit;
         }
 
-        $this->updateOrderState($payment, $notificationData);
         header("HTTP/1.1 202 Accepted");
         exit;
+    }
+
+    /**
+     * @deprecated
+     */
+    public function notification() {
+        $this->notifications();
     }
 
     private function updateOrderState($payment, $notificationData)
@@ -158,11 +165,23 @@ class ControllerExtensionPaymentPaynow extends Controller
     private function isCorrectStatus($previousStatus, $nextStatus)
     {
         $paymentStatusFlow = [
-            self::PAYNOW_PAYMENT_STATUS_NEW => [self::PAYNOW_PAYMENT_STATUS_PENDING, self::PAYNOW_PAYMENT_STATUS_ERROR],
-            self::PAYNOW_PAYMENT_STATUS_PENDING => [self::PAYNOW_PAYMENT_STATUS_CONFIRMED, self::PAYNOW_PAYMENT_STATUS_REJECTED],
+            self::PAYNOW_PAYMENT_STATUS_NEW => [
+                self::PAYNOW_PAYMENT_STATUS_NEW,
+                self::PAYNOW_PAYMENT_STATUS_PENDING,
+                self::PAYNOW_PAYMENT_STATUS_ERROR,
+                self::PAYNOW_PAYMENT_STATUS_CONFIRMED,
+                self::PAYNOW_PAYMENT_STATUS_REJECTED
+            ],
+            self::PAYNOW_PAYMENT_STATUS_PENDING => [
+                self::PAYNOW_PAYMENT_STATUS_CONFIRMED,
+                self::PAYNOW_PAYMENT_STATUS_REJECTED
+            ],
             self::PAYNOW_PAYMENT_STATUS_REJECTED => [self::PAYNOW_PAYMENT_STATUS_CONFIRMED],
             self::PAYNOW_PAYMENT_STATUS_CONFIRMED => [],
-            self::PAYNOW_PAYMENT_STATUS_ERROR => [self::PAYNOW_PAYMENT_STATUS_CONFIRMED, self::PAYNOW_PAYMENT_STATUS_REJECTED]
+            self::PAYNOW_PAYMENT_STATUS_ERROR => [
+                self::PAYNOW_PAYMENT_STATUS_CONFIRMED,
+                self::PAYNOW_PAYMENT_STATUS_REJECTED
+            ]
         ];
         $previousStatusExists = isset($paymentStatusFlow[$previousStatus]);
         $isChangePossible = in_array($nextStatus, $paymentStatusFlow[$previousStatus]);
