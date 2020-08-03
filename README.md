@@ -17,7 +17,7 @@ Wtyczka wspiera OpenCart w wersji 3.0 lub wyższej.
 
 ## Instalacja
 
-1. Pobierz plik paynow.ocmod.zip [repozytorium Github][ext1] i zapisz na dysku swojego komputera
+1. Pobierz plik [paynow.ocmod.zip][ext1] i zapisz na dysku swojego komputera
 2. Przjedź do panelu administracyjnego OpenCart
 3. Przejdź do zakładki `Extensions > Installer`
 
@@ -86,7 +86,7 @@ Jeśli chciałbyś dowiedzieć się więcej o bramce płatności Paynow odwied�
 Licencja MIT. Szczegółowe informacje znajdziesz w pliku LICENSE.
 
 [ext0]: README.EN.md
-[ext1]: https://github.com/pay-now/paynow-opencart/releases/latest
+[ext1]: https://github.com/pay-now/paynow-opencart/releases/latest/download/paynow.ocmod.zip
 [ext2]: https://panel.sandbox.paynow.pl/auth/register
 [ext3]: instruction/step1.png
 [ext4]: instruction/step2.png
