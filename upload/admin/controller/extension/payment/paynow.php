@@ -2,7 +2,7 @@
 
 class ControllerExtensionPaymentPaynow extends Controller
 {
-    private $version = "1.0.1";
+    private $version = "1.0.3";
 
     private $error = array();
     private $settings = array();
