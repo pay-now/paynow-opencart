@@ -5,7 +5,6 @@ class ControllerExtensionPaymentPaynow extends Controller
     private $version = "1.0.3";
 
     private $error = array();
-    private $settings = array();
 
     private $apiClient;
 
@@ -14,12 +13,12 @@ class ControllerExtensionPaymentPaynow extends Controller
         $this->load->model('extension/payment/paynow');
         $this->load->model('setting/setting');
 
-        $this->settings = array(
+        $default_settings = array(
             'payment_paynow_sandbox_enabled' => 0,
             'payment_paynow_sort_order' => 1,
             'payment_paynow_geo_zone' => 0
         );
-        $this->model_setting_setting->editSetting('payment_paynow', $this->settings);
+        $this->model_setting_setting->editSetting('payment_paynow', $default_settings);
         $this->model_extension_payment_paynow->createDatabaseTables();
     }
 
