@@ -57,6 +57,7 @@ class ControllerExtensionPaymentPaynow extends Controller
         $data["payment_paynow_status"] = $this->getConfigValue("payment_paynow_status");
         $data["payment_paynow_sort_order"] = $this->getConfigValue("payment_paynow_sort_order");
         $data["payment_paynow_geo_zone"] = $this->getConfigValue("payment_paynow_geo_zone");
+
         $data["payment_paynow_sandbox_enabled"] = $this->getConfigValue("payment_paynow_sandbox_enabled");
         $data["payment_paynow_sandbox_api_key"] = $this->getConfigValue("payment_paynow_sandbox_api_key");
         $data["payment_paynow_sandbox_signature_key"] = $this->getConfigValue("payment_paynow_sandbox_signature_key");

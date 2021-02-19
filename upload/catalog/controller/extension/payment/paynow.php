@@ -205,6 +205,6 @@ class ControllerExtensionPaymentPaynow extends Controller
 
     private function toAmount($value, $currencyCode)
     {
-        return $this->currency->format($value, $currencyCode, "", false) * 100;
+        return $this->currency->format(number_format($value * 100, 0, '', ''), $currencyCode, "", false);
     }
 }

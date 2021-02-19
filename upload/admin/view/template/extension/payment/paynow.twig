@@ -54,7 +54,7 @@
                         <label class="col-sm-2 control-label" for="input-sandbox">{{ entry_sandbox_enabled }}</label>
                         <div class="col-sm-10">
                             <label class="radio-inline">
-                                {% if entry_sandbox_enabled %}
+                                {% if payment_paynow_sandbox_enabled %}
                                     <input type="radio" name="payment_paynow_sandbox_enabled" value="1" checked="checked" />
                                     {{ text_yes }}
                                 {% else %}
@@ -63,7 +63,7 @@
                                 {% endif %}
                             </label>
                             <label class="radio-inline">
-                                {% if not entry_sandbox_enabled %}
+                                {% if not payment_paynow_sandbox_enabled %}
                                     <input type="radio" name="payment_paynow_sandbox_enabled" value="0" checked="checked" />
                                     {{ text_no }}
                                 {% else %}
@@ -124,10 +124,10 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-geo-zone">{{ entry_geo_zone }}</label>
                         <div class="col-sm-10">
-                            <select name="payment_paynow_geo_zone_id" id="input-geo-zone" class="form-control">
+                            <select name="payment_paynow_geo_zone" id="input-geo-zone" class="form-control">
                                 <option value="0">{{ text_all_zones }}</option>
                                 {% for geo_zone in geo_zones %}
-                                    {% if geo_zone.geo_zone_id == payment_payza_geo_zone_id %}
+                                    {% if geo_zone.geo_zone_id == payment_paynow_geo_zone %}
                                         <option value="{{ geo_zone.geo_zone_id }}" selected="selected">{{ geo_zone.name }}</option>
                                     {% else %}
                                         <option value="{{ geo_zone.geo_zone_id }}">{{ geo_zone.name }}</option>
