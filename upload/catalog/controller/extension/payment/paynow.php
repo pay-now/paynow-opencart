@@ -89,7 +89,9 @@ class ControllerExtensionPaymentPaynow extends Controller
             "externalId" => $orderInfo["order_id"],
             "description" => $this->language->get("payment_paynow_text_order") . $orderInfo["order_id"],
             "buyer" => [
-                "email" => $orderInfo["email"]
+                "email" => $orderInfo["email"],
+                'firstName' => $orderInfo['firstname'],
+                'lastName' => $orderInfo['lastname']
             ]
         ];
         $idempotencyKey = uniqid($orderInfo['order_id'], "_");
@@ -205,6 +207,6 @@ class ControllerExtensionPaymentPaynow extends Controller
 
     private function toAmount($value, $currencyCode)
     {
-        return $this->currency->format($value, $currencyCode, "", false) * 100;
+        return $this->currency->format(number_format($value * 100, 0, '', ''), $currencyCode, "", false);
     }
 }
