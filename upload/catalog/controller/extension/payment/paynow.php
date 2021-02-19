@@ -89,7 +89,9 @@ class ControllerExtensionPaymentPaynow extends Controller
             "externalId" => $orderInfo["order_id"],
             "description" => $this->language->get("payment_paynow_text_order") . $orderInfo["order_id"],
             "buyer" => [
-                "email" => $orderInfo["email"]
+                "email" => $orderInfo["email"],
+                'firstName' => $orderInfo['firstname'],
+                'lastName' => $orderInfo['lastname']
             ]
         ];
         $idempotencyKey = uniqid($orderInfo['order_id'], "_");
