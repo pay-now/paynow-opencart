@@ -6,7 +6,7 @@ deploy:
   api_key:
     secure: Vwc3BKcSYy7WihLOhtampotuQVrTtdfoHv76XsdgdRWp0vmN39Pv4R11S0gI3g/TOOwHMB+trrVV+b7VN3ERk6XLE4D90mEJ6nYyzS3wbvuVAS9YLNbqcvfU2rw/TkVV5QHS1odd8E3gTtOuRXMWvXvYQocZ3qXYyittWBnl5Pt3xlkGJtFcAHYOtPiVp9kJMz/lD+3N+45Pli60F6iMgvnTSyN+PbV5CljQrFcrut8roB3PtqQA9Yq68tT3nqnH9Z7jiJKJFgwhrFJBZkOAommFNkLU2AKUNFGFbaSMRRZcBc5gcGrGz9wnsMjYuLX19/m3BDGZyah9Y8c5keknBbZVWJxQj9BrDnaPjTUn9GrTzzJEodRCR2ECEFNmhpl/qq8zts46rW9Ykb3GNkMwvciKbO/nG4gyw6yUV8tOCh62Uwm3LsSEMzpdw1mdURRtP8gxC1ecZxvbn8CSgXY7lySJFYWBYvxBh4BnRAIIjDYv2c8+J9J4KLV1JCbZDJPnPnOHQDsxBzv+7o400Mx+5lNhdyGil1po1pDqOQbuEhnR+nems68GeFLAXbgtAZNX05zCIpxwjKzPzHz6sFszi942r2x/vO1jwuhicGHZz5/pnENo9vPPiZQavJ6wC+HSW0uYDRHvSvyGqZetpjTe0oyakI+pusFeTk5ZgU++eds=
   file: paynow.ocmod.zip
-  cleanup: false
+  skip_cleanup: true
   on:
     repo: pay-now/paynow-opencart
     branch: master
