@@ -16,6 +16,9 @@ class ControllerExtensionPaymentPaynow extends Controller
     private $version = "1.0.4";
     private $apiClient = null;
 
+    private $apiKey;
+    private $signatureKey;
+
     public function __construct($registry)
     {
         parent::__construct($registry);
@@ -28,12 +31,12 @@ class ControllerExtensionPaymentPaynow extends Controller
 
         $this->load->model("setting/setting");
         $isSandboxEnabled = (int)$this->config->get("payment_paynow_sandbox_enabled");
-        $apiKey = $this->isSandboxEnabled ? $this->config->get("payment_paynow_sandbox_api_key") : $this->config->get("payment_paynow_production_api_key");
-        $signatureKey = $this->isSandboxEnabled ? $this->config->get("payment_paynow_sandbox_signature_key") : $this->config->get("payment_paynow_production_signature_key");
+        $this->apiKey = $isSandboxEnabled ? $this->config->get("payment_paynow_sandbox_api_key") : $this->config->get("payment_paynow_production_api_key");
+        $this->signatureKey = $isSandboxEnabled ? $this->config->get("payment_paynow_sandbox_signature_key") : $this->config->get("payment_paynow_production_signature_key");
 
         $this->apiClient = new \Paynow\Client(
-            $apiKey,
-            $signatureKey,
+            $this->apiKey,
+            $this->signatureKey,
             $isSandboxEnabled ? \Paynow\Environment::SANDBOX : \Paynow\Environment::PRODUCTION,
             "OpenCart-" . VERSION . "/Plugin-" . $this->version
         );
