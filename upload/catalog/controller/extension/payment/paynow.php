@@ -13,7 +13,7 @@ class ControllerExtensionPaymentPaynow extends Controller
     const ORDER_STATUS_CONFIRMED = 2;
     const ORDER_STATUS_ERROR = 10;
 
-    private $version = "1.0.4";
+    private $version = "1.0.5";
     private $apiClient = null;
 
     private $apiKey;
