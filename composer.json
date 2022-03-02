@@ -4,7 +4,7 @@
   "type": "opencart-plugin",
   "require": {
     "php": ">=5.4",
-    "pay-now/paynow-php-sdk": "^1.0.5"
+    "pay-now/paynow-php-sdk": "^1.0.6"
   },
   "license": "MIT",
   "minimum-stability": "stable",
