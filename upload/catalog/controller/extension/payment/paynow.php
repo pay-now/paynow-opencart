@@ -13,7 +13,7 @@ class ControllerExtensionPaymentPaynow extends Controller
     const ORDER_STATUS_CONFIRMED = 2;
     const ORDER_STATUS_ERROR = 10;
 
-    private $version = "1.0.5";
+    private $version = "1.0.6";
     private $apiClient = null;
 
     private $apiKey;
@@ -85,7 +85,7 @@ class ControllerExtensionPaymentPaynow extends Controller
     {
         $payment_data = [
             "amount" => $this->toAmount($orderInfo["total"], $orderInfo["currency_code"]),
-            "currency" => $orderInfo["currency_code"],
+            "currency" => strtoupper($orderInfo["currency_code"]),
             "externalId" => $orderInfo["order_id"],
             "description" => $this->language->get("payment_paynow_text_order") . $orderInfo["order_id"],
             "buyer" => [
